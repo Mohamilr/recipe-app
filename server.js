@@ -52,3 +52,6 @@ app.use('/api', route);
 app.listen(Port, () => {
     console.log(`app is running on ${Port}`)
 })
+
+// export app to test
+export default app;
