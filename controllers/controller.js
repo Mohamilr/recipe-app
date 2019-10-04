@@ -4,14 +4,11 @@ import Recipe from '../models/model';
 const recipeController = {
     getAllRecipe(req, res) {
        Recipe.find().then((recipe) => {
-           res.status(200).json({
-               message: 'all recipies',
-               recipe
-           })
+           res.status(200).json(recipe)
        }).catch((e) => {
           console.log(e)
-          res.json({
-              message: 'error in getting recipies'
+          res.status(400).json({
+              message: 'error in getting recipes'
           })
        })
     },
@@ -19,14 +16,11 @@ const recipeController = {
         Recipe.findOne({
             _id: req.params.id
         }).then((recipe) => {
-            res.status(200).json({
-                message: 'single request',
-                recipe
-            })
+            res.status(200).json(recipe)
         }).catch((e) => {
             console.log(e)
-            res.json({
-                message: 'error, did not get single request'
+            res.status(400).json({
+                message: 'error, did not get single recipe'
             })
         })
     },
@@ -46,8 +40,8 @@ const recipeController = {
       })
       .catch((e) => {
           console.log(e)
-          res.json({
-              message : 'error'
+          res.status(400).json({
+              message : 'error, could not add recipe'
           })
       })
     },
@@ -61,9 +55,12 @@ const recipeController = {
             difficulty: req.body.difficulty
           });
         Recipe.updateOne({_id: req.params.id}, recipe).then((recipe) => {
-            res.status(200).json({
-                message: "updated recipe",
-                recipe
+            res.status(200).json(recipe)
+        })
+        .catch((e) => {
+            console.log(e)
+            res.status(400).json({
+                message: 'error, could not modify recipe'
             })
         })
     },
@@ -76,7 +73,7 @@ const recipeController = {
             })
         }).catch((e) => {
             console.log(e)
-            res.json({
+            res.status(400).json({
                 message: 'error, did not delete sucessfully'
             })
         })

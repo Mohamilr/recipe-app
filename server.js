@@ -7,7 +7,6 @@ import dotenv from 'dotenv';
 // import route
 import route from './routes/recipe.route'
 
-// MONGOOSE-KEY : mongodb+srv://mohammed:<password>@cluster0-satex.mongodb.net/test?retryWrites=true&w=majority
 
 // initialize express
 const app = express();
@@ -16,7 +15,7 @@ const app = express();
 dotenv.config();
 
 // connect mongoose
-mongoose.connect(`mongodb+srv://mohammed:${process.env.PASSWORD}@cluster0-satex.mongodb.net/test?retryWrites=true&w=majority`) 
+mongoose.connect(`mongodb+srv://mohammed:w24xTWaoiVDwG9RK@cluster0-satex.mongodb.net/test?retryWrites=true&w=majority`) 
 .then(() => {
     console.log('successfully connected to mongodb')
 })
@@ -52,3 +51,6 @@ app.use('/api', route);
 app.listen(Port, () => {
     console.log(`app is running on ${Port}`)
 })
+
+// export app to test
+export default app;
