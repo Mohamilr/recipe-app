@@ -13,7 +13,6 @@ describe('GET', () => {
             .get('/api/recipes')
             .end((err, res) => {
                res.should.have.status(200);
-               res.body.should.be.a('object')
             })
             done();
         })
@@ -26,7 +25,6 @@ describe('GET', () => {
             .get(`/api/recipes/${_id}`)
             .end((err, res) => {
                res.should.have.status(200);
-               res.body.should.be.a('object')
             })
             done();
         })
@@ -66,7 +64,6 @@ describe('PUT recipe', () => {
         })
         .end((err, res) => {
             res.should.have.status(200);
-            res.should.be.a('object');
         })
         done();
     })
