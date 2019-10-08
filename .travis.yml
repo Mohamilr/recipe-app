@@ -10,8 +10,8 @@ cache:
 before_script:
   - npm install 
 
- script:
-  - nyc --reporter=lcov npm run test  
+script:
+  - nyc --reporter=lcov npm run test 
   
 after_succcess: npm run coverage
 

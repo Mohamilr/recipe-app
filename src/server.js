@@ -14,10 +14,16 @@ const app = express();
 // config dot-env
 dotenv.config();
 
+// configure body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // connect mongoose
-mongoose.connect(`mongodb+srv://mohammed:w24xTWaoiVDwG9RK@cluster0-satex.mongodb.net/test?retryWrites=true&w=majority`) 
-.then(() => {
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useCreateIndex : true , useUnifiedTopology: true }) 
+.then((next) => {
     console.log('successfully connected to mongodb')
+    next;
 })
 .catch(e => {
      console.log(e)
@@ -25,8 +31,7 @@ mongoose.connect(`mongodb+srv://mohammed:w24xTWaoiVDwG9RK@cluster0-satex.mongodb
 })
 
 
-// configure body-parser
-app.use(bodyParser.json({ extended: true }));
+// app.use(bodyParser.json({ extended: true }));
 
 const Port = process.env.PORT || 3000;
 
